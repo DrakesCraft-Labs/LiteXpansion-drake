@@ -2,6 +2,7 @@ package dev.j3fftw.litexpansion.service;
 
 import dev.j3fftw.litexpansion.LiteXpansion;
 import dev.j3fftw.litexpansion.utils.Reflections;
+import dev.j3fftw.litexpansion.utils.AddonBalancePolicy;
 import com.github.drakescraft_labs.slimefun4.api.items.SlimefunItem;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import com.github.drakescraft_labs.slimefun4.legacy.api.BlockStorage;
@@ -62,7 +63,7 @@ public class MetricsService {
         }));
 
         metrics.addCustomChart(new SimplePie("nerf_addons", () ->
-            LiteXpansion.getInstance().getConfig().getBoolean("options.nerf-other-addons", false) ? "true" : "false"));
+            AddonBalancePolicy.isNerfEnabled(LiteXpansion.getInstance().getConfig()) ? "true" : "false"));
     }
 
     @Nullable

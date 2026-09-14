@@ -6,6 +6,7 @@ import dev.j3fftw.litexpansion.resources.ThoriumResource;
 import dev.j3fftw.litexpansion.service.MetricsService;
 import dev.j3fftw.litexpansion.ticker.PassiveElectricRemovalTicker;
 import dev.j3fftw.litexpansion.utils.Constants;
+import dev.j3fftw.litexpansion.utils.AddonBalancePolicy;
 import dev.j3fftw.litexpansion.utils.Reflections;
 import dev.j3fftw.litexpansion.uumatter.UUMatter;
 import com.github.drakescraft_labs.slimefun4.api.SlimefunAddon;
@@ -47,7 +48,7 @@ public class LiteXpansion extends JavaPlugin implements SlimefunAddon {
         }
 
 
-        if (getConfig().getBoolean("options.nerf-other-addons", false)) {
+        if (AddonBalancePolicy.isNerfEnabled(getConfig())) {
             getServer().getScheduler().runTask(this, this::nerfCrap);
         }
 
